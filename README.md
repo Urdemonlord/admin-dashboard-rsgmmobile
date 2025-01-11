@@ -38,12 +38,12 @@ Proyek ini adalah sebuah dashboard admin untuk RSGM Unimus yang memungkinkan pen
 
 1. Clone repositori ini:
    ```bash
-   git clone <URL_REPOSITORI>
+   admin-dashboard-rsgmmobile
    ```
 
 2. Masuk ke direktori proyek:
    ```bash
-   cd <NAMA_FOLDER_PROYEK>
+   cd admin-dashboard-rsgmmobile
    ```
 
 3. Jalankan server backend Anda (pastikan backend sudah berjalan di `http://localhost:5000/api`).
