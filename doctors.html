@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Doctors - RSGM Unimus</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <script>
+    function checkAdminLogin() {
+      const adminData = localStorage.getItem('adminData');
+      if (!adminData) {
+        window.location.href = 'login.html';
+      } else {
+        const admin = JSON.parse(adminData);
+        if (admin.role !== 'admin') {
+          window.location.href = 'login.html';
+        }
+      }
+    }
+    checkAdminLogin();
+  </script>
+  <h1>Admin Dashboard</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Dashboard</a></li>
+      <li><a href="doctors.html">Doctors</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="appointments.html">Appointments</a></li>
+      <li><a href="patients.html">Patients</a></li>
+      <li><button id="logoutButton" class="logout-button">Logout</button></li>
+    </ul>
+  </nav>
+
+  <div id="content">
+    <h2>Manage Doctors</h2>
+    <button onclick="showAddDoctorForm()">Add New Doctor</button>
+
+    <div id="addDoctorForm" style="display: none;">
+        <h3>Add New Doctor</h3>
+        <form id="doctorForm">
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" name="nama" required><br><br>
+
+            <label for="spesialis">Spesialis:</label>
+            <input type="text" id="spesialis" name="spesialis" required><br><br>
+            
+            <label for="jam">Jam:</label>
+            <input type="text" id="jam" name="jam" required><br><br>
+
+            <label for="ruangan">Ruangan:</label>
+            <input type="text" id="ruangan" name="ruangan" required><br><br>
+
+            <button type="button" onclick="addDoctor()">Submit</button>
+            <button type="button" onclick="cancelAddDoctor()">Cancel</button>
+        </form>
+        <div id="addDoctorMessage"></div>
+      </div>
+
+    <table id="doctorsTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nama</th>
+          <th>Spesialis</th>
+          <th>Jam</th>
+          <th>Ruangan</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="doctors.js"></script>
+</body>
+</html>

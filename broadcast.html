@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Broadcast Notification - RSGM Unimus</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <script>
+    function checkAdminLogin() {
+      const adminData = localStorage.getItem('adminData');
+      if (!adminData) {
+        window.location.href = 'login.html';
+      } else {
+        const admin = JSON.parse(adminData);
+        if (admin.role !== 'admin') {
+          window.location.href = 'login.html';
+        }
+      }
+    }
+    checkAdminLogin();
+  </script>
+  <h1>Admin Dashboard</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Dashboard</a></li>
+      <li><a href="doctors.html">Doctors</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="appointments.html">Appointments</a></li>
+      <li><a href="patients.html">Patients</a></li>
+      <li><a href="broadcast.html">Broadcast</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div id="content">
+    <h2>Broadcast Notification</h2>
+    <form id="broadcastForm">
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" required></textarea><br><br>
+
+      <label for="role">Target Role (optional):</label>
+      <input type="text" id="role" name="role" placeholder="e.g., pasien"><br><br>
+
+      <button type="button" onclick="sendBroadcast()">Send Notification</button>
+    </form>
+    <div id="broadcastMessage"></div>
+  </div>
+
+  <script src="broadcast.js"></script>
+</body>
+</html>

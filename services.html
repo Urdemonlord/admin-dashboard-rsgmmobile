@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Services - RSGM Unimus</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <script>
+        function checkAdminLogin() {
+            const adminData = localStorage.getItem('adminData');
+            if (!adminData) {
+                window.location.href = 'login.html';
+            } else {
+                const admin = JSON.parse(adminData);
+                if (admin.role !== 'admin') {
+                    window.location.href = 'login.html';
+                }
+            }
+        }
+        checkAdminLogin();
+    </script>
+  <h1>Admin Dashboard</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Dashboard</a></li>
+      <li><a href="doctors.html">Doctors</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="appointments.html">Appointments</a></li>
+      <li><a href="patients.html">Patients</a></li>
+      <li><button id="logoutButton" class="logout-button">Logout</button></li>
+    </ul>
+  </nav>
+
+  <div id="content">
+    <h2>Manage Services</h2>
+    <button onclick="showAddServiceForm()">Add New Service</button>
+    <div id="addServiceForm" style="display: none;">
+        <h3>Add New Service</h3>
+        <form id="serviceForm">
+            <label for="serviceName">Nama Layanan:</label>
+            <input type="text" id="serviceName" name="serviceName" required><br><br>
+
+            <button type="button" onclick="addService()">Submit</button>
+            <button type="button" onclick="cancelAddService()">Cancel</button>
+        </form>
+        <div id="addServiceMessage"></div>
+    </div>
+    <table id="servicesTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nama Layanan</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        </tbody>
+    </table>
+  </div>
+
+  <script src="services.js"></script>
+</body>
+</html>
